@@ -1,14 +1,8 @@
 import React from 'react';
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI';
 import './App.css';
 import BooksInShelf from './BooksInShelf';
 
-const books = [
-  {id: 1, title: 'To Kill a Mockingbird', authors: 'Harper Lee', shelf: 'currentlyReading', imageLinks: 'http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api'},
-  {id: 2, title: 'Enders Game', authors: 'Orson Scott Card', shelf: 'currentlyReading', imageLinks: 'http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api'}
-]
-
-const shelfTitle = ['Currently Reading', 'Want To Read', 'Read'];
 
 class BooksApp extends React.Component {
   state = {
@@ -18,7 +12,15 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    showSearchPage: false,
+    books: [],
+
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
   }
 
   render() {
@@ -53,19 +55,19 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <div className="bookshelf">
-                  <h2 className="bookshelf-title">{shelfTitle[0]}</h2>
+                  <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
-                    <BooksInShelf books={books}/>
+                    <BooksInShelf books={this.state.books}/>
                   </div>
                 </div>
                 <div className="bookshelf">
-                  <h2 className="bookshelf-title">{shelfTitle[1]}</h2>
-                  <BooksInShelf books={books} />
+                  <h2 className="bookshelf-title">Want To Read</h2>
+                  <BooksInShelf books={this.state.books} />
                 </div>
                 <div className="bookshelf">
-                  <h2 className="bookshelf-title">{shelfTitle[2]}</h2>
+                  <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
-                    <BooksInShelf books={books}/>
+                    <BooksInShelf books={this.state.books}/>
                   </div>
                 </div>
               </div>
@@ -76,8 +78,8 @@ class BooksApp extends React.Component {
           </div>
         )}
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;
