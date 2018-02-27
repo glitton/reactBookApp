@@ -1,21 +1,14 @@
 import React from 'react';
 import './App.css';
-import PropTypes from 'prop-types';
 
 
-class BooksInShelf extends React.Component {
-  static propTypes = {
-    books: PropTypes.array.isRequired
-  }
-
+class Books extends React.Component {
   render() {
     return (
-      <ol className="books-grid">
-        {this.props.books.map((book) => (
-          <li key={book.id}>
+          <li key={this.props.book.id}>
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}></div>
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail}`}}></div>
                 <div className="book-shelf-changer">
                   <select>
                     <option value="none" disabled>Move to...</option>
@@ -26,15 +19,13 @@ class BooksInShelf extends React.Component {
                   </select>
                 </div>
               </div>
-              <div className="book-title">{book.title}</div>
-              <div className="book-authors">{book.authors}</div>
+              <div className="book-title">{this.props.book.title}</div>
+              <div className="book-authors">{this.props.book.authors}</div>
             </div>
           </li>
-        ))}
-      </ol>
-    );
+        )}
+
   }
-}
 
 
-export default BooksInShelf;
+export default Books;

@@ -1,20 +1,13 @@
 import React from 'react';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import BooksInShelf from './BooksInShelf';
+import BookShelf from './BookShelf';
 
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
     showSearchPage: false,
     books: [],
-
   }
 
   componentDidMount() {
@@ -54,22 +47,17 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <BooksInShelf books={this.state.books}/>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want To Read</h2>
-                  <BooksInShelf books={this.state.books} />
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                    <BooksInShelf books={this.state.books}/>
-                  </div>
-                </div>
+
+                <BookShelf shelfName={'Currently Reading'}
+                           books={this.state.books}
+                           />
+                <BookShelf shelfName={'Want To Read'}
+                           books={this.state.books}
+                           />
+                <BookShelf shelfName={'Read'}
+                           books={this.state.books}
+                           />
+
               </div>
             </div>
             <div className="open-search">
