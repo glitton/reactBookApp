@@ -18,7 +18,7 @@ class BookShelf extends React.Component {
               <Books
                 key={book.id}
                 book={book}
-                shelf={book.shelf}/>
+              />
             ))}
 
         </div>
