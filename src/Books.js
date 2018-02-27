@@ -5,7 +5,7 @@ import './App.css';
 class Books extends React.Component {
   render() {
     return (
-        <ol className="books-grid">
+
           <li key={this.props.book.id}>
             <div className="book">
               <div className="book-top">
@@ -24,7 +24,7 @@ class Books extends React.Component {
               <div className="book-authors">{this.props.book.authors}</div>
             </div>
           </li>
-        </ol>
+
     )}
   }
 

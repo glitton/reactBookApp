@@ -17,11 +17,10 @@ class BooksApp extends React.Component {
   }
 
   shelfBooks = (shelf) => {
-    this.state.books.filter((book) => book.shelf === shelf)
+    return this.state.books.filter((book) => book.shelf === shelf)
   }
 
-  render() {
-
+  render(){
     return (
       <div className="app">
         {this.state.showSearchPage ? (
