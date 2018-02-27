@@ -16,7 +16,12 @@ class BooksApp extends React.Component {
     })
   }
 
+  shelfBooks = (shelf) => {
+    this.state.books.filter((book) => book.shelf === shelf)
+  }
+
   render() {
+
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -50,12 +55,15 @@ class BooksApp extends React.Component {
 
                 <BookShelf shelfName={'Currently Reading'}
                            books={this.state.books}
+                           shelfBooks={this.shelfBooks('currentlyReading')}
                            />
                 <BookShelf shelfName={'Want To Read'}
                            books={this.state.books}
+                           shelfBooks={this.shelfBooks('wantToRead')}
                            />
                 <BookShelf shelfName={'Read'}
                            books={this.state.books}
+                           shelfBooks={this.shelfBooks('read')}
                            />
 
               </div>
