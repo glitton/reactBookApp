@@ -3,7 +3,16 @@ import './App.css';
 
 
 class Books extends React.Component {
+  state = {
+    shelf: this.props.book.shelf
+  }
+
+  updateShelf = (shelf) => {
+    this.setState({ shelf: event.target.value })
+  }
+
   render() {
+    console.log(this.setState)
     return (
 
           <li key={this.props.book.id}>
@@ -11,7 +20,7 @@ class Books extends React.Component {
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail}`}}></div>
                 <div className="book-shelf-changer">
-                  <select>
+                  <select value={this.state.shelf} onChange={this.updateShelf}>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
