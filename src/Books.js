@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-// import * as BooksAPI from './BooksAPI';
+import * as BooksAPI from './BooksAPI';
 
 
 class Books extends React.Component {
@@ -9,11 +9,11 @@ class Books extends React.Component {
   }
 
   updateShelf = (event) => {
-    // BooksAPI.update(this.props.book.id, this.props.book.shelf)
-    //   .then(data => {
-    //     let newShelf = data.results;
-    //     console.log(newShelf)
-    //   })
+    BooksAPI.update(this.props.book.id, this.props.book.shelf)
+      .then(data => {
+        let newShelf = data.results;
+        console.log(newShelf)
+      })
       this.setState({ shelf: event.target.value })
   }
 
