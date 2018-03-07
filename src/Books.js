@@ -1,27 +1,10 @@
 import React from 'react';
 import './App.css';
-import * as BooksAPI from './BooksAPI';
 
 
 class Books extends React.Component {
-  state = {
-    shelf: this.props.book.shelf
-  }
-
-  updateShelf = (event) => {
-    BooksAPI.update(this.props.book.id, this.props.book.shelf)
-      .then(data => {
-        let newShelf = data.results;
-        console.log(newShelf)
-      })
-      this.setState({ shelf: event.target.value })
-  }
-
   render() {
-    console.log(this.setState)
-
     return (
-
           <li key={this.props.book.id}>
             <div className="book">
               <div className="book-top">
