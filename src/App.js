@@ -8,6 +8,7 @@ class BooksApp extends React.Component {
   state = {
     showSearchPage: false,
     books: [],
+    shelf: [],
   }
 
   componentDidMount() {
@@ -21,8 +22,17 @@ class BooksApp extends React.Component {
     return this.state.books.filter((book) => book.shelf === shelf)
   }
 
-  render(){
+  changeShelf = (bookId, newShelf) => {
+    BooksAPI.update(bookId,newShelf).then((bookId, newShelf) => {
+      this.setState({
+        books: this.books,
+        shelf: newShelf
+      });
+    });
+  }
 
+  render(){
+    console.log('Book State ' + this.setState)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -57,14 +67,17 @@ class BooksApp extends React.Component {
                 <BookShelf shelfName={'Currently Reading'}
                            books={this.state.books}
                            shelfBooks={this.shelfBooks('currentlyReading')}
+                           changeShelf={this.changeShelf}
                            />
                 <BookShelf shelfName={'Want To Read'}
                            books={this.state.books}
                            shelfBooks={this.shelfBooks('wantToRead')}
+                           changeShelf={this.changeShelf}
                            />
                 <BookShelf shelfName={'Read'}
                            books={this.state.books}
                            shelfBooks={this.shelfBooks('read')}
+                           changeShelf={this.changeShelf}
                            />
 
               </div>
