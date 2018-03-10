@@ -3,17 +3,24 @@ import './App.css';
 
 
 class Books extends React.Component {
+  state = {
+    value: this.props.book.shelf
+  };
+
+  // handleChange(event) {
+  //   this.setState({value: event.target.value});
+  //   console.log('Set state' + this.setState)
+  // }
+
   render() {
+    console.log('Book state' + this.state.value)
     return (
           <li key={this.props.book.id}>
             <div className="book">
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail}`}}></div>
                 <div className="book-shelf-changer">
-                  <select
-                    onChange={() => this.props.onChange()}
-                    value={this.props.newShelf}
-                  >
+                  <select value={this.state.value} onChange={() => this.setState({value: "changed"})}>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>

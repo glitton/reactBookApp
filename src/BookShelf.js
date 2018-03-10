@@ -6,22 +6,14 @@ import Books from './Books';
 class BookShelf extends React.Component {
   static propTypes = {
     books: PropTypes.array.isRequired
-  }
+  };
 
   state = {
-      shelf: ''
+    shelfValue: this.props.shelfName
   }
 
-  // updateShelf = (event) => {
-  //   BooksAPI.update(this.props.book.id, this.props.book.shelf)
-  //     .then(data => {
-  //       let newShelf = data.results;
-  //       console.log(newShelf)
-  //     })
-  //     this.setState({ shelf: event.target.value })
-  // }
-
   render() {
+    
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{this.props.shelfName}</h2>
@@ -31,7 +23,7 @@ class BookShelf extends React.Component {
               <Books
                 key={book.id}
                 book={book}
-                newShelf={this.state.shelf}
+
               />
             ))}
           </ol>
