@@ -8,7 +8,6 @@ class BooksApp extends React.Component {
   state = {
     showSearchPage: false,
     books: [],
-    shelf: ''
   }
 
   componentDidMount() {
@@ -20,15 +19,6 @@ class BooksApp extends React.Component {
 
   shelfBooks = (shelf) => {
     return this.state.books.filter((book) => book.shelf === shelf)
-  }
-
-  updateShelf = (event) => {
-    BooksAPI.update(this.props.book.id, this.props.book.shelf)
-      .then(data => {
-        let newShelf = data.results;
-        console.log(newShelf)
-      })
-      this.setState({ shelf: event.target.value })
   }
 
   render(){
