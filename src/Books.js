@@ -5,8 +5,8 @@ import * as BooksAPI from './BooksAPI';
 
 class Books extends React.Component {
   state = {
-    shelf: this.props.book.shelf
-  }
+    value: this.props.book.shelf
+  };
 
   updateShelf = (event) => {
     BooksAPI.update(this.props.book.id, this.props.book.shelf)
@@ -14,9 +14,8 @@ class Books extends React.Component {
   }
 
   render() {
-    console.log(this.setState)
+    console.log('Book state' + this.state.value)
     return (
-
           <li key={this.props.book.id}>
             <div className="book">
               <div className="book-top">

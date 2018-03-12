@@ -16,7 +16,7 @@ class BooksApp extends React.Component {
       // console.log(books);
     })
   }
-
+  // Place books in its proper shelf upon load
   shelfBooks = (shelf) => {
     return this.state.books.filter((book) => book.shelf === shelf)
   }
@@ -32,6 +32,7 @@ class BooksApp extends React.Component {
  // }
 
   render(){
+
     return (
       <div className="app">
         {this.state.showSearchPage ? (
